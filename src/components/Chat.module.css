@@ -39,6 +39,8 @@
   background: #2b2b2b;
   display: flex;
   flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .messages::-webkit-scrollbar {
@@ -78,5 +80,9 @@
 
   .header h1 {
     font-size: 20px;
+  }
+
+  .error {
+    padding: 12px 20px;
   }
 }
