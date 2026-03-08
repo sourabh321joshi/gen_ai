@@ -24,7 +24,8 @@ export function useChat() {
     setMessages((prev) => [...prev, userMessage]);
     setLoading(true);
     try {
-      const res = await sendChatMessage(content.trim(), sessionId);
+      const history = messages.map((m) => ({ role: m.role, content: m.content }));
+      const res = await sendChatMessage(content.trim(), history);
       if (res.sessionId) setSessionId(res.sessionId);
       setMessages((prev) => [
         ...prev,
@@ -48,7 +49,7 @@ export function useChat() {
     } finally {
       setLoading(false);
     }
-  }, [loading, sessionId]);
+  }, [loading, messages]);
 
   return { messages, loading, error, sendMessage };
 }

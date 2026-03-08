@@ -68,10 +68,11 @@ Vite proxies `/api` to the server, so the frontend talks to the same origin in d
 
    The server serves the built app from `dist/` and listens on `PORT` (default `3001`). Open [http://localhost:3001](http://localhost:3001).
 
-3. **Optional: separate frontend and API**
+3. **Deploy on Vercel**
 
-   - Deploy the Express app (e.g. Railway, Render) and set `GEMINI_API_KEY` there.
-   - Deploy the static build (e.g. Vercel, Netlify) and set `VITE_API_URL` to your API base URL (e.g. `https://your-api.example.com`) before running `npm run build`.
+   - Push the repo to GitHub and import the project in [Vercel](https://vercel.com).
+   - In the project settings, add an **Environment Variable**: `GEMINI_API_KEY` = your Gemini API key.
+   - Deploy. The app uses the `/api/chat` serverless function; the key stays server-side.
 
 ## Scripts
 

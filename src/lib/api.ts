@@ -4,19 +4,24 @@ const API_BASE =
 
 export interface ChatResponse {
   text: string;
-  sessionId: string;
+  sessionId?: string;
+}
+
+export interface HistoryMessage {
+  role: 'user' | 'assistant';
+  content: string;
 }
 
 export async function sendChatMessage(
   message: string,
-  sessionId: string | null
+  history: HistoryMessage[] = []
 ): Promise<ChatResponse> {
   const res = await fetch(`${API_BASE}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       message: message.trim(),
-      ...(sessionId && { sessionId }),
+      history: history.map((m) => ({ role: m.role, content: m.content })),
     }),
   });
   const data = await res.json();
