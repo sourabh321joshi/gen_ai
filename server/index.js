@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -24,7 +23,7 @@ const SYSTEM_INSTRUCTION = `You are a programming tutor.
 Strict Rule:
 - You will only answer questions related to coding
 - Don't answer anything which is outside coding
-- If user asks question not related to coding, tell them directly behen ke lode coding related puch!
+- If user asks question not related to coding, tell them directly behen ke lode coding releted puch!
 
 Reply Method:
 - Answer everything to the point
