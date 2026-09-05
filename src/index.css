@@ -26,6 +26,7 @@
 
   /* Accent */
   --accent: #7c6cff;
+  --accent-2: #b06cff;
   --accent-hover: #6a58ff;
   --accent-text: #ffffff;
   --accent-soft: rgba(124, 108, 255, 0.14);
@@ -65,6 +66,7 @@
     --text-faint: #8b8b95;
 
     --accent: #5b4bdb;
+    --accent-2: #8b3fc4;
     --accent-hover: #4c3dc4;
     --accent-soft: rgba(91, 75, 219, 0.1);
     --accent-ring: rgba(91, 75, 219, 0.2);
@@ -81,13 +83,20 @@ body,
   height: 100%;
 }
 
+/* The app shell owns all scrolling; the document itself must never scroll,
+   otherwise the mobile keyboard can push the header out of view. */
+html {
+  overflow: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow: hidden;
+  overscroll-behavior: none;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -95,9 +104,13 @@ body {
 .app {
   display: flex;
   flex-direction: column;
+  /* --app-height is kept in sync with visualViewport by useViewportHeight,
+     so the shell shrinks with the on-screen keyboard instead of overflowing. */
   height: 100vh;
   height: 100dvh;
+  height: var(--app-height, 100dvh);
   width: 100%;
+  overflow: hidden;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
