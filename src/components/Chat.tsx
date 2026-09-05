@@ -16,21 +16,28 @@ export function Chat() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>💻 Coding assistant</h1>
-        <p>Ask coding questions only. Answers are to the point, first principles.</p>
+        <div className={styles.headerInner}>
+          <h1 className={styles.title}>Your AI Legal Study Companion</h1>
+          <p className={styles.subtitle}>
+            Understand legal concepts, cases, and principles with clear,
+            concise, student-friendly explanations.
+          </p>
+        </div>
       </header>
 
       <div className={styles.messages} role="log" aria-live="polite">
-        {messages.map((msg) => (
-          <Message key={msg.id} message={msg} />
-        ))}
-        {loading && <TypingIndicator />}
-        <div ref={messagesEndRef} aria-hidden />
+        <div className={styles.thread}>
+          {messages.map((msg) => (
+            <Message key={msg.id} message={msg} />
+          ))}
+          {loading && <TypingIndicator />}
+          <div ref={messagesEndRef} aria-hidden />
+        </div>
       </div>
 
       {error && (
         <div className={styles.error} role="alert">
-          {error}
+          <div className={styles.errorInner}>{error}</div>
         </div>
       )}
 

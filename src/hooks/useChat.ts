@@ -51,5 +51,5 @@ export function useChat() {
     }
   }, [loading, messages]);
 
-  return { messages, loading, error, sendMessage };
+  return { messages, sessionId, loading, error, sendMessage };
 }

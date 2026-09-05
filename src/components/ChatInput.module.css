@@ -1,60 +1,68 @@
 .container {
-  padding: 20px 32px calc(32px + env(safe-area-inset-bottom, 0px));
-  background: #2b2b2b;
-  border-top: 1px solid #3a3a3a;
+  flex-shrink: 0;
+  padding: 16px var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+/* Keeps the composer aligned with the message column */
+.inner {
   display: flex;
-  gap: 12px;
   align-items: flex-end;
+  gap: 10px;
+  max-width: var(--column);
+  margin: 0 auto;
 }
 
 .input {
   flex: 1;
-  padding: 14px 18px;
-  border: 2px solid #3a3a3a;
-  border-radius: 12px;
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
   font-size: 15px;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  background: #1e1e1e;
-  color: #e8e8e8;
+  background: var(--surface);
+  color: var(--text);
   font-family: inherit;
   resize: none;
-  min-height: 48px;
+  min-height: 46px;
   max-height: 200px;
   line-height: 1.5;
 }
 
 .input:focus {
-  border-color: #ab68ff;
-  box-shadow: 0 0 0 3px rgba(171, 104, 255, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
 }
 
 .input::placeholder {
-  color: #6b6b6b;
+  color: var(--text-faint);
 }
 
 .input:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .button {
-  padding: 14px 28px;
-  background: #ab68ff;
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(171, 104, 255, 0.3);
   flex-shrink: 0;
+  min-height: 46px;
+  padding: 0 22px;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 14.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
 }
 
 .button:hover:not(:disabled) {
-  background: #9654e8;
-  box-shadow: 0 4px 12px rgba(171, 104, 255, 0.4);
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
@@ -63,24 +71,44 @@
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
   transform: none;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0px));
-  }
-}
+/* ---- Responsive ---- */
 
-@media (max-width: 420px) {
+@media (max-width: 640px) {
   .container {
-    flex-direction: column;
-    align-items: stretch;
+    padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .inner {
+    gap: 8px;
+  }
+
+  /* 16px prevents iOS Safari from zooming in on focus */
+  .input {
+    font-size: 16px;
+    padding: 11px 14px;
   }
 
   .button {
-    width: 100%;
+    padding: 0 18px;
+  }
+}
+
+/* Very narrow: icon-sized send button rather than stacking */
+@media (max-width: 380px) {
+  .button {
+    padding: 0 14px;
+  }
+}
+
+/* Devices without hover (touch): drop the lift effect */
+@media (hover: none) {
+  .button:hover:not(:disabled) {
+    background: var(--accent);
+    transform: none;
   }
 }

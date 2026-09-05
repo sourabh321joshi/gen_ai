@@ -36,26 +36,28 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
 
   return (
     <div className={styles.container}>
-      <textarea
-        ref={textareaRef}
-        className={styles.input}
-        placeholder="Ask your doubt..."
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        disabled={disabled}
-        rows={1}
-        aria-label="Message"
-      />
-      <button
-        type="button"
-        className={styles.button}
-        onClick={handleSubmit}
-        disabled={disabled || !value.trim()}
-        aria-label="Send"
-      >
-        Send
-      </button>
+      <div className={styles.inner}>
+        <textarea
+          ref={textareaRef}
+          className={styles.input}
+          placeholder="Ask your doubt..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={disabled}
+          rows={1}
+          aria-label="Message"
+        />
+        <button
+          type="button"
+          className={styles.button}
+          onClick={handleSubmit}
+          disabled={disabled || !value.trim()}
+          aria-label="Send"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }
